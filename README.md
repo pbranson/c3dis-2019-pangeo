@@ -17,3 +17,7 @@ sbatch start_pangeo.sh
 ssh -N -l pbranson -L 8888:z043:8888 zeus.pawsey.org.au
 ```
 The correct format for the last line will be printed to the job output file pangeo-######.out, along with the security token to login to the jupyter server.
+
+### Acknowledgements
+
+Most of these examples are adapted from others work, in particular @scottyhq [ESIP-Tech-Dive](https://github.com/scottyhq/esip-tech-dive), @martindurant, @rabernat, @shoyer and @andersy005 just to name a few! 
