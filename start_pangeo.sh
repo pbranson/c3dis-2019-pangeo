@@ -3,8 +3,8 @@
 #SBATCH --partition=workq
 ##SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10
-#SBATCH --mem-per-cpu=5G
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=4G
 #SBATCH --time=24:00:00
 #SBATCH --account=pawsey0106
 #SBATCH --export=NONE
@@ -39,8 +39,8 @@ LOGFILE=$MYSCRATCH/pangeo_jupyter_log.$(date +%Y%m%dT%H%M%S)
 
 
 echo "Logging jupyter notebook session on $JNHOST to $LOGFILE"
-
-jupyter notebook $@ --no-browser --ip=$JNHOST >& $LOGFILE &
+export XDG_RUNTIME_DIR=""
+srun -n 1 -c $SLURM_CPUS_PER_TASK --export=ALL jupyter notebook $@ --no-browser --ip=$JNHOST >& $LOGFILE &
 JNPID=$!
 
 echo -en "\nStarting jupyter notebook server, please wait ... "
